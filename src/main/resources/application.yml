@@ -1,0 +1,44 @@
+spring:
+  datasource:
+    username: root
+    password: npants0703***
+    url: jdbc:mysql://39.107.154.186:3306/caicpstat
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #监控  springboot2.0配置不同，需另配置
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  cache:
+    ehcache:
+      config : classpath:ehcache.xml
+  jpa: 
+    hibernate: 
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        generate_statistics: true
+        cache:
+          use_second_level_cache: true
+          use_query_cache: true
+          region:
+            factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+      javax:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+    
+    
